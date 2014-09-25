@@ -28,7 +28,7 @@ var PlaylistView = Backbone.View.extend({
         return new PlaylistEntryView({model: song}).render();
       })
     );
-    $('.library').after(this.$el);
+    //$('.library').after(this.$el);
   }
 
 });

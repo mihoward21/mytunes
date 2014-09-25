@@ -14,14 +14,16 @@ var AppView = Backbone.View.extend({
     }, this);
 
     this.model.on('change:playlist', function(model) {
-      this.playlistView.remove();
+      //this.playlistView.remove();
       this.playlistView = new PlaylistView({model: this.model.get('playlist')});
+      this.render();
     }, this);
 
 
   },
 
   render: function(){
+    this.$el.children().detach();
     return this.$el.html([
       this.playerView.$el,
       this.libraryView.$el,
