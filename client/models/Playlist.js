@@ -13,6 +13,10 @@ var Playlist = Backbone.Model.extend({
     });
   },
 
+  select: function(){
+    this.trigger('select', this);
+  },
+
   playFirst: function() {
     this.at(0).play();
   },

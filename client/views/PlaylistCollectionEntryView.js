@@ -6,7 +6,7 @@ var PlaylistCollectionEntryView = Backbone.View.extend({
 
   events: {
     'click': function() {
-
+      this.model.select();
     }
   },
 
