@@ -3,10 +3,9 @@ var PlaylistView = Backbone.View.extend({
   tagName: "table",
 
   initialize: function() {
-    this.model.songs.on('add', function(){
-      console.log(this.model.get('name'));
+    this.listenTo(this.model.songs,'add', function(){
       this.render();
-    }, this);
+    });
 
     this.model.songs.on('remove', function(){
       this.render();
@@ -29,6 +28,7 @@ var PlaylistView = Backbone.View.extend({
         return new PlaylistEntryView({model: song}).render();
       })
     );
+    $('.library').after(this.$el);
   }
 
 });

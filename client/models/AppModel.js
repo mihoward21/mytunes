@@ -23,18 +23,14 @@ var AppModel = Backbone.Model.extend({
     }, this);
 
     params.library.on('enqueue', function(song){
-      console.log(this.get('playlist').get('name'));
       this.get('playlist').songs.add(song);
     }, this);
 
     this.get('playlist').on('stop', function(){
-      //console.log(this.get('songQueue').length);
       this.set('currentSong');
     }, this);
 
     this.get('playlistCollection').on('select', function(playlist) {
-      // console.log('setting playlist');
-      // console.log(playlist);
       this.set('playlist', playlist);
     }, this);
 
