@@ -29,5 +29,4 @@ var SongQueue = Songs.extend({
     }
   }
 
-
 });
