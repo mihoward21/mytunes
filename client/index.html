@@ -25,13 +25,17 @@
     <script src="views/PlaylistCollectionEntryView.js"></script>
     <script src="views/AppView.js"></script>
 
+    <script src="routers/AppRouter.js"></script>
+
     <script>
       $(function(){
         // set up model objects
         //var library = new Songs(songData, 'defaultLibrary');
 
+        app = {};
+
         // First argument (models) to new Songs must be undefined, or it will override fetch()
-        var library = new Songs([], 'defaultLibrary');
+        app.library = new Songs([], 'defaultLibrary');
 
         // Template for adding to localStorage
         // library.create({
@@ -45,16 +49,20 @@
         //     library.create(songData[i]);
         // }
 
-        var app = new AppModel({library: library});
+        app.appModel = new AppModel({library: app.library});
 
         // build a view for the top level of the whole app
 
-        var appView = new AppView({model: app});
+        app.appView = new AppView({model: app.appModel});
 
-        library.fetch();
+        app.library.fetch();
+
+        app.appRouter = new AppRouter();
 
         // put the view onto the screen
-        $('body').append(appView.render());
+        $('body').append(app.appView.render());
+
+        Backbone.history.start()
       });
     </script>
   </body>
