@@ -6,13 +6,14 @@ var LibraryView = Backbone.View.extend({
   initialize: function() {
 
     this.render();
-    this.collection.on('play', function() {
+    this.collection.on('change', function() {
       this.render();
     }, this);
 
     this.collection.on('sync', function() {
       this.render();
     }, this);
+
   },
 
   render: function(){

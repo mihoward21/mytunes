@@ -4,6 +4,9 @@ var SongModel = Backbone.Model.extend({
     if (this.get('playCount') === undefined) {
       this.set('playCount', 0);
     }
+    if (this.get('votes') === undefined) {
+      this.set('votes', 0);
+    }
     //console.log('initializing');
     this.set('playing', false);
   },
@@ -31,6 +34,18 @@ var SongModel = Backbone.Model.extend({
   ended: function(){
     // Triggering an event here will also trigger the event on the collection
     this.trigger('ended', this);
+  },
+
+  upvote: function(){
+    // Triggering an event here will also trigger the event on the collection
+    this.set('votes', this.get('votes')+1);
+    this.save();
+  },
+
+  downvote: function(){
+    // Triggering an event here will also trigger the event on the collection
+    this.set('votes', this.get('votes')-1);
+    this.save();
   }
 
 });
