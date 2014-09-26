@@ -24,7 +24,7 @@ var AppModel = Backbone.Model.extend({
     }, this);
 
     params.library.on('enqueue', function(song){
-      this.get('playlist').songs.add(song);
+      this.get('playlist').songs.create(song);
     }, this);
 
     this.get('playlist').on('stop', function(){

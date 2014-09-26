@@ -6,6 +6,7 @@
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
+    <script src="bower_components/backbone.localStorage/backbone.localStorage-min.js"></script>
 
     <script src="data/data.js"></script>
 
@@ -27,12 +28,30 @@
     <script>
       $(function(){
         // set up model objects
-        var library = new Songs(songData);
+        //var library = new Songs(songData, 'defaultLibrary');
+
+        // First argument (models) to new Songs must be undefined, or it will override fetch()
+        var library = new Songs([], 'defaultLibrary');
+
+        // Template for adding to localStorage
+        // library.create({
+        //     artist: 'artist',
+        //     title: 'title',
+        //     url: 'url'
+        // });
+        //
+        // To reload original songData (when localStorage is cleared)
+        // for (var i = 0 ; i < 4; i++) {
+        //     library.create(songData[i]);
+        // }
 
         var app = new AppModel({library: library});
 
         // build a view for the top level of the whole app
+
         var appView = new AppView({model: app});
+
+        library.fetch();
 
         // put the view onto the screen
         $('body').append(appView.render());

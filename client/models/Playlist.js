@@ -3,7 +3,7 @@ var Playlist = Backbone.Model.extend({
   initialize: function(name){
     this.set('name', name);
     this.set('counter', 0);
-    this.songs = new Songs();
+    this.songs = new Songs([], name);
 
     this.on('ended', function() {
 
